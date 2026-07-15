@@ -1,3 +1,0 @@
-GNU_INSTALL_ROOT := /opt/homebrew/bin/
-GNU_VERSION := 13.2.1
-GNU_PREFIX := arm-none-eabi

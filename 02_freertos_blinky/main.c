@@ -17,18 +17,18 @@ static void redLEDtask(void*pvParameters)
     (void)pvParameters;
 
     nrf_gpio_cfg_output(redLED);//设置为输出模式
-    nrf_gpio_pin_set(redLED);//初始化，初始为高电平，LED灯熄灭
+    nrf_gpio_pin_clear(redLED);//初始化，初始为高电平，LED灯熄灭
 
     for(;;)//无限循环
     {
         if(xSemaphoreTake(xkey,portMAX_DELAY)==pdTRUE)
         {
-        nrf_gpio_pin_clear(redLED);//LED灯亮
+        nrf_gpio_pin_set(redLED);//LED灯亮
         vTaskDelay(pdMS_TO_TICKS(500));
-        nrf_gpio_pin_set(redLED);
+        nrf_gpio_pin_clear(redLED);
         xSemaphoreGive(xkey);
         }
-    vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 }
 static void greenLEDTask(void*pvParameters)
@@ -36,18 +36,18 @@ static void greenLEDTask(void*pvParameters)
     (void)pvParameters;
 
     nrf_gpio_cfg_output(greenLED);
-    nrf_gpio_pin_set(greenLED);
+    nrf_gpio_pin_clear(greenLED);
 
     for(;;)
     {
         if(xSemaphoreTake(xkey,portMAX_DELAY)==pdTRUE)
         {
-            nrf_gpio_pin_clear(greenLED);
-            vTaskDelay(pdMS_TO_TICKS(500));
-
             nrf_gpio_pin_set(greenLED);
+            vTaskDelay(pdMS_TO_TICKS(500));
+            nrf_gpio_pin_clear(greenLED);
             xSemaphoreGive(xkey);
         }
+        
         vTaskDelay(pdMS_TO_TICKS(50));
     }
 }

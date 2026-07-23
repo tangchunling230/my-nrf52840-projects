@@ -3,7 +3,7 @@
 #include "boards.h"
 #include "nrf_delay.h"
 #include "nrf_gpio.h"
-/*FreeRTOS 核心头文件*/
+/* FreeRTOS 核心头文件 */
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
